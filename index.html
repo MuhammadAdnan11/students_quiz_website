@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Website</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    if (!localStorage.getItem("isLoggedIn")) {
+      window.location.href = "login.html";
+    }
+  </script>
+</head>
+<body>
+  <header class="header">
+    <a href="#" class="logo">Quiz.</a>
+    <button class="menu-toggle" id="menu-toggle">&#9776;</button>
+    <nav class="navbar">
+      <a href="#" class="active">Home</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+      <a href="./login.html">Login</a>
+      <a href="./registration.html">Register</a>
+    </nav>
+  </header>
+
+  <main class="main">
+    <section class="home" id="home-section">
+      <div class="home-content">
+        <h1>Quiz Portal</h1>
+        <p>Ready to test your computer skills? Dive into this quiz and prove your knowledge!</p>
+        <button id="start-quiz-btn" class="start-btn">Start Quiz</button>
+        <p style="color: rgb(22, 12, 12)">Prepared By: <b>"Engr M.Adnan"</b> for GIMS Students Practice</p>
+      </div>
+    </section>
+
+    <!-- <section class="quiz-section" id="quiz-section" style="display: none;">
+      <div class="quiz-box">
+        <h1>Computer Skills</h1>
+        <div class="quiz-header">
+          <span>Test Your ICT Knowledge</span>
+          <span class="header-score">Score: <span class="current-score">0</span> / <span class="total-questions">0</span></span>
+        </div>
+        <h2 class="question-text"></h2>
+        <div class="option-list"></div>
+
+        <div class="quiz-footer">
+          <span class="question-counter"><span class="current-question">1</span> of <span class="total-questions">0</span> Questions</span>
+          <button class="next-btn">Next</button>
+        </div>
+      </div>
+
+
+      <div class="result-box" style="display: none;">
+        <h2>Quiz Result!</h2>
+        <div class="percentage-container">
+          <div class="circular-progress">
+            <span class="progress-value">0%</span>
+          </div>
+          <span class="question-total">You answered <span class="current-score">0</span> out of <span class="total-questions">0</span> questions correctly.</span>
+        </div>
+        <div class="buttons">
+          <button class="tryAgain-btn">Try Again</button>
+          <button class="goHome-btn">Go To Home</button>
+        </div>
+      </div>
+    </section> -->
+<!-- Include this inside your <body> where appropriate -->
+<!-- <section class="quiz-section">
+  <div class="quiz-box">
+    <h1>Computer Skills</h1>
+    <div class="quiz-header">
+      <span>Test Your ICT Knowledge</span>
+      <span class="header-score">Score: <span class="current-score">0</span> / <span class="total-questions">0</span></span>
+    </div>
+    <h2 class="question-text"></h2>
+    <div class="option-list"></div>
+    <div class="quiz-footer">
+      <span class="question-counter"><span class="current-question">1</span> of <span class="total-questions">0</span> Questions</span>
+      <button class="next-btn">Next</button>
+    </div>
+  </div>
+</section> -->
+<!-- Start Button (could be in a welcome screen or header) -->
+<!-- <button id="start-quiz-btn" class="start-btn">Start Quiz</button> -->
+
+<!-- Quiz Section (hidden by default) -->
+<!-- <section class="quiz-section" style="display: none;">
+  <div class="quiz-box">
+    <h1>Computer Skills</h1>
+    <div class="quiz-header">
+      <span>Test Your ICT Knowledge</span>
+      <span class="header-score">Score: <span class="current-score">0</span> / <span class="total-questions">0</span></span>
+    </div>
+    <h2 class="question-text"></h2>
+    <div class="option-list"></div>
+    <div class="quiz-footer">
+      <span class="question-counter"><span class="current-question">1</span> of <span class="total-questions">0</span> Questions</span>
+      <button class="next-btn">Next</button>
+    </div>
+  </div>
+</section> -->
+
+<section class="quiz-section">
+  <div class="quiz-box">
+    <h1>Computer Skills</h1>
+    <div class="quiz-header">
+      <span>Test Your ICT Knowledge</span><br />
+      <span class="header-score">Score: <span class="current-score">0</span> / <span class="total-questions">0</span></span>
+    </div>
+
+ <!-- ✅ New progress bar -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+
+
+    <h2 class="question-text"></h2>
+    <div class="option-list"></div>
+    <div class="quiz-footer">
+      <span class="question-counter"><span class="current-question">1</span> of <span class="total-questions">0</span> Questions</span><br />
+      <button class="next-btn">Next</button>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+    <div class="popup-info" style="display: none;">
+      <h2>Quiz Guide</h2>
+      <span class="info">1. Click "Continue" to begin the quiz.</span>
+      <span class="info">2. Read each question carefully and choose the correct answer.</span>
+      <span class="info">3. Click "Next" to proceed to the next question.</span>
+      <span class="info">4. After completing the quiz, view your score.</span>
+      <span class="info">5. Click "Try Again" or "Go To Home" as needed.</span>
+      <div class="btn-group">
+        <button class="info-btn exit-btn">Exit Quiz</button>
+        <a href="#" class="info-btn continue-btn">Continue</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="questions.js"></script>
+  <!-- <script src="script.js"></script> -->
+  <script>
+    document.getElementById('start-quiz-btn').addEventListener('click', () => {
+      document.getElementById('home-section').style.display = 'none';
+      document.getElementById('quiz-section').style.display = 'block';
+    });
+
+    const toggle = document.getElementById("menu-toggle");
+    const navbar = document.querySelector(".navbar");
+    const links = navbar.querySelectorAll("a");
+
+    toggle.addEventListener("click", () => {
+      navbar.classList.toggle("active");
+    });
+    links.forEach(link => {
+      link.addEventListener("click", () => {
+        navbar.classList.remove("active");
+      });
+    });
+
+    window.onload = () => {
+      const saved = localStorage.getItem("theme") || "light";
+      document.body.classList.add(saved);
+    };
+  </script>
+
+
+
+<!-- <script>
+const questions = [
+  {
+    numb: 1,
+    question: "What is hardware?",
+    answer: "B. Physical parts of the computer",
+    options: [
+      "A. Medical software",
+      "B. Physical parts of the computer",
+      "C. A type of virus",
+      "D. None of the above"
+    ]
+  },
+  {
+    numb: 2,
+    question: "What is software?",
+    answer: "A. Programs and operating systems",
+    options: [
+      "A. Programs and operating systems",
+      "B. Wires and circuits",
+      "C. Hardware",
+      "D. Physical equipment"
+    ]
+  }
+];
+
+let questionIndex = 0;
+let userScore = 0;
+
+const questionText = document.querySelector(".question-text");
+const optionsList = document.querySelector(".option-list");
+const nextBtn = document.querySelector(".next-btn");
+const totalQuestions = document.querySelector(".total-questions");
+const currentQuestionEl = document.querySelector(".current-question");
+const currentScore = document.querySelector(".current-score");
+
+// Display the first question
+function showQuestion(index) {
+  const q = questions[index];
+  questionText.textContent = `${q.numb}. ${q.question}`;
+  optionsList.innerHTML = "";
+
+  q.options.forEach(option => {
+    const div = document.createElement("div");
+    div.className = "option";
+    div.innerHTML = `<span>${option}</span>`;
+    div.onclick = () => selectOption(div, q.answer);
+    optionsList.appendChild(div);
+  });
+
+  currentQuestionEl.textContent = index + 1;
+  totalQuestions.textContent = questions.length;
+  currentScore.textContent = userScore;
+}
+
+function selectOption(selected, correctAnswer) {
+  const userAnswer = selected.textContent;
+  const options = optionsList.children;
+
+  if (userAnswer === correctAnswer) {
+    selected.classList.add("correct");
+    userScore++;
+  } else {
+    selected.classList.add("incorrect");
+    [...options].forEach(opt => {
+      if (opt.textContent === correctAnswer) {
+        opt.classList.add("correct");
+      }
+    });
+  }
+
+  [...options].forEach(opt => opt.classList.add("disabled"));
+  nextBtn.classList.add("active");
+}
+
+nextBtn.onclick = () => {
+  questionIndex++;
+  if (questionIndex < questions.length) {
+    showQuestion(questionIndex);
+    nextBtn.classList.remove("active");
+  } else {
+    alert("Quiz complete!");
+  }
+};
+
+// Start immediately (simulate continue click)
+document.addEventListener("DOMContentLoaded", () => {
+  showQuestion(questionIndex);
+});
+</script> -->
+
+
+</body>
+</html>

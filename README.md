@@ -1,1 +1,1 @@
-# students_quiz_website
+# quiz_website
