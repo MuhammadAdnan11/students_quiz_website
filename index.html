@@ -10,6 +10,12 @@
       window.location.href = "login.html";
     }
   </script>
+
+   <style>
+    #quizSection {
+      display: none; /* initially hidden */
+    }
+  </style>
 </head>
 <body>
   <header class="header">
@@ -26,12 +32,69 @@
   </header>
 
   <main class="main">
-    <section class="home" id="home-section">
+    <!-- <section class="home" id="home-section">
       <div class="home-content">
         <h1>Quiz Portal</h1>
         <p>Ready to test your computer skills? Dive into this quiz and prove your knowledge!</p>
-        <button id="start-quiz-btn" class="start-btn">Start Quiz</button>
-        <p style="color: rgb(22, 12, 12)">Prepared By: <b>"Engr M.Adnan"</b> for GIMS Students Practice</p>
+       
+        <p>Select a course and start the quiz:</p> -->
+
+    <!-- ✅ Course Dropdown -->
+    <!-- <select id="course-select">
+      <option value="" disabled selected>Select a course</option>
+      <option value="ict">ICT / Computer Skills</option>
+      <option value="msword">MS Word</option>
+      <option value="networking">Networking</option> -->
+      <!-- Add more subjects here -->
+    <!-- </select> -->
+<div class="particles">
+  <span></span><span></span><span></span><span></span><span></span>
+</div>
+
+
+<!-- Home Section -->
+<section class="home" id="home-section">
+  <div class="home-content">
+    <h1>Quiz Portal</h1>
+    <p>Select a course and start the quiz:</p>
+    <select id="course-select">
+      <option value="" disabled selected>Select a course</option>
+      <option value="ict">ICT</option>
+      <option value="msword">MS Word</option>
+      <option value="networking">Networking</option>
+    </select>
+    <br /><br />
+    <button id="start-quiz-btn" class="start-btn">Start Quiz</button>
+      <p style="color: rgb(22, 12, 12)">Prepared By: <b>"Engr M.Adnan"</b> for GIMS Students Practice</p>
+
+
+    </div>
+</section>
+
+<!-- Quiz Section -->
+<section class="quiz-section" style="display: none;">
+  <div class="quiz-box">
+    <h1>Computer Quiz</h1>
+    <div class="quiz-header">
+      <span>Course: <span id="selected-course-label">-</span></span><br />
+      <span>Score: <span class="current-score">0</span> / <span class="total-questions">0</span></span>
+    </div>
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <h2 class="question-text"></h2>
+    <div class="option-list"></div>
+    <div class="quiz-footer">
+      <span class="question-counter"><span class="current-question">1</span> of <span class="total-questions">0</span> Questions</span><br />
+      <button class="next-btn">Next</button>
+    </div>
+  </div>
+</section>
+
+
+
+
+        <!-- <button id="start-quiz-btn" class="start-btn">Start Quiz</button> -->
       </div>
     </section>
 
@@ -147,7 +210,8 @@
 
   <script src="questions.js"></script>
   <!-- <script src="script.js"></script> -->
-  <script>
+  <!-- 🎯 -->
+  <!-- <script>
     document.getElementById('start-quiz-btn').addEventListener('click', () => {
       document.getElementById('home-section').style.display = 'none';
       document.getElementById('quiz-section').style.display = 'block';
@@ -170,9 +234,28 @@
       const saved = localStorage.getItem("theme") || "light";
       document.body.classList.add(saved);
     };
+  </script> -->
+<!-- 🎯🎯🎯🎯🎯 -->
+ <script>
+    document.getElementById('startQuizBtn').addEventListener('click', function () {
+      const courseSelected = document.getElementById('courseSelect').value;
+      
+      if (!courseSelected) {
+        alert('Please select a course before starting the quiz.');
+        
+        // Reset visibility of elements to ensure they are displayed correctly
+        document.getElementById('homePage').style.display = 'block'; // Show home page again
+        document.getElementById('startQuizBtn').style.display = 'block'; // Ensure "Start Quiz" button is visible
+        document.getElementById('quizSection').style.display = 'none'; // Hide quiz section
+        document.getElementById('courseSelect').style.display = 'block'; // Ensure course select is visible
+      } else {
+        // Proceed with starting the quiz if a course is selected
+        document.getElementById('homePage').style.display = 'none'; // Hide home page
+        document.getElementById('startQuizBtn').style.display = 'none'; // Hide "Start Quiz" button
+        document.getElementById('quizSection').style.display = 'block'; // Show quiz section
+      }
+    });
   </script>
-
-
 
 <!-- <script>
 const questions = [
@@ -265,6 +348,12 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script> -->
 
+
+
+
+
+<!-- 🧪🧪🧪🧪 -->
+ 
 
 </body>
 </html>

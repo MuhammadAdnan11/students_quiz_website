@@ -16,11 +16,74 @@ let userScore = 0;
 const nextBtn = document.querySelector('.next-btn');
 const optionsList = document.querySelector('.option-list');
 
+
+function getRandomQuestionsFromCourse(course, limit = 10) {
+  const filtered = questionBank.filter(q => q.course === course);
+  const shuffled = [...filtered].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, limit);
+}
+
+
+
+
 // Start button opens quiz popup
-startBtn.onclick = () => {
-  popupInfo.classList.add('active');
-  main.classList.add('active');
-};
+// startBtn.onclick = () => {
+//   popupInfo.classList.add('active');
+//   main.classList.add('active');
+// };
+
+
+// startBtn.addEventListener("click", () => {
+//   const courseDropdown = document.getElementById("course-select");
+//   selectedCourse = courseDropdown.value;
+
+//   if (!selectedCourse) {
+//     alert("Please select a course to begin the quiz.");
+//     return;
+//   }
+
+//   questions = getRandomQuestionsFromCourse(selectedCourse, 10);
+
+//   if (questions.length === 0) {
+//     alert("No questions found for selected course.");
+//     return;
+//   }
+
+//   document.getElementById("home-section").style.display = "none";
+//   quizSection.style.display = "block";
+
+//   questionIndex = 0;
+//   userScore = 0;
+//   totalQuestionEls.forEach(el => el.textContent = questions.length);
+//   showQuestion(questionIndex);
+//   updateProgressBar(questionIndex);
+// });
+
+
+ // JavaScript code for handling the Start Quiz button click
+    document.getElementById('startQuizBtn').addEventListener('click', function () {
+      const courseSelected = document.getElementById('courseSelect').value;
+      
+      if (!courseSelected) {
+        // Show a pop-up alert if no course is selected
+        alert('Please select a course before starting the quiz.');
+        
+        // Ensure the home page and "Start Quiz" button are visible again
+        document.getElementById('homePage').style.display = 'block';
+        document.getElementById('startQuizBtn').style.display = 'block';  // Ensure button is visible
+        
+        // Hide quiz section to avoid confusion
+        document.getElementById('quizSection').style.display = 'none';
+      } else {
+        // Proceed with starting the quiz if a course is selected
+        document.getElementById('homePage').style.display = 'none';
+        document.getElementById('startQuizBtn').style.display = 'none';  // Hide start button after quiz begins
+        document.getElementById('quizSection').style.display = 'block';  // Show the quiz section
+      }
+    });
+
+
+
 
 // Exit button closes quiz popup
 exitBtn.onclick = () => {
