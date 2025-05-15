@@ -606,7 +606,7 @@ label[for="course-select"] {
   color: #333;
 }
 
-#document-section {
+/* #document-section {
   margin-top: 20px;
   padding: 20px;
   background-color: #f4f4f4;
@@ -615,31 +615,65 @@ label[for="course-select"] {
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
+} */
+#document-section {
+  background-color: #e6f0ff; /* Light blue background matching your theme */
+  border: 1px solid #007bff;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 20px auto;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.1);
 }
-
-#document-section h3 {
+/* #document-section h3 {
   text-align: center;
   font-size: 1.5rem;
   margin-bottom: 15px;
   color: #333;
+} */
+#document-section h3 {
+  color: #003366;
+  margin-bottom: 15px;
+  font-size: 1.4rem;
+  text-align: center;
 }
-
 #document-links {
   list-style-type: none;
   padding: 0;
 }
 
-#document-links li {
+/* #document-links li {
   margin: 10px 0;
   text-align: center;
+} */
+#document-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+/* #document-links a {
+  text-decoration: none;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: inline-block;
+  transition: background-color 0.3s;
+}
+
+#document-links a:hover {
+  background-color: #0056b3;
+} */
+#document-links li {
+  margin: 10px 0;
 }
 
 #document-links a {
   text-decoration: none;
   background-color: #007bff;
   color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
+  padding: 10px 15px;
+  border-radius: 6px;
   display: inline-block;
   transition: background-color 0.3s;
 }
